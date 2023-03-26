@@ -62,8 +62,22 @@ public class BookRepository implements ProjectRepository<Book> {
     public boolean removeItemByRegex(String bookRegexToRemove) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("regex", bookRegexToRemove);
-        jdbcTemplate.update("DELETE FROM books WHERE author = :regex OR title = :regex OR CAST(size AS VARCHAR(4)) = :regex", parameterSource);
-        logger.info("book " + bookRegexToRemove + " deleted");
+        Pattern pattern = Pattern.compile(bookRegexToRemove);
+        for (Book book : retrieveAll()) {
+           Matcher authorMatcher = pattern.matcher(book.getAuthor());
+           Matcher titleMatcher = pattern.matcher(book.getTitle());
+           Matcher sizeMatcher = pattern.matcher(book.getSize().toString());
+           if(authorMatcher.find()){
+               jdbcTemplate.update("DELETE FROM books WHERE author REGEXP :regex", parameterSource);
+           } else if (titleMatcher.find()) {
+               jdbcTemplate.update("DELETE FROM books WHERE title REGEXP :regex", parameterSource);
+           } else if (sizeMatcher.find()) {
+               jdbcTemplate.update("DELETE FROM books WHERE size REGEXP :regex", parameterSource);
+           } else {
+               logger.info("book not found");
+           }
+        }
+        logger.info("book deleted by #" + bookRegexToRemove + "# deleted");
         return true;
     }
     @Override
