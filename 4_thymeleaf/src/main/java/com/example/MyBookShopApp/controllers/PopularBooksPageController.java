@@ -10,23 +10,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 @Controller
-public class MainPageController {
+public class PopularBooksPageController {
 
     private final BookService bookService;
-
     @Autowired
-    public MainPageController(BookService bookService) {
+    public PopularBooksPageController(BookService bookService) {
         this.bookService = bookService;
     }
 
-    @ModelAttribute("recommendedBooks")
-    public List<Book> recommendedBooks() {
+    @ModelAttribute("booksList")
+    public List<Book> bookList() {
         return bookService.getBooksData();
     }
 
-    @GetMapping("/")
-    public String mainPage() {
-        return "index";
+    @GetMapping("/books/popular")
+    public String popularBookPage(){
+        return "books/popular";
     }
-
 }
