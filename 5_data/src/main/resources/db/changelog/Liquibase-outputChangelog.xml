@@ -1,0 +1,1205 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet author="User (generated)" id="1685288869056-1">
+        <createTable tableName="authors">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="authors_pkey"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="photo" type="VARCHAR(255)"/>
+            <column name="slug" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-2">
+        <createTable tableName="balance_transaction">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="balance_transaction_pkey"/>
+            </column>
+            <column name="book_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="value" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-3">
+        <createTable tableName="book2author">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book2author_pkey"/>
+            </column>
+            <column defaultValueNumeric="0" name="sort_index" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author_id" type="INTEGER"/>
+            <column name="book_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-4">
+        <createTable tableName="book2genre">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book2genre_pkey"/>
+            </column>
+            <column name="book_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="genre_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-5">
+        <createTable tableName="book2user">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book2user_pkey"/>
+            </column>
+            <column name="book_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-6">
+        <createTable tableName="book2user_type">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book2user_type_pkey"/>
+            </column>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-7">
+        <createTable tableName="book_file">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book_file_pkey"/>
+            </column>
+            <column name="hash" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="path" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-8">
+        <createTable tableName="book_file_type">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book_file_type_pkey"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column name="file_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-9">
+        <createTable tableName="book_review">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book_review_pkey"/>
+            </column>
+            <column name="book_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-10">
+        <createTable tableName="book_review_like">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="book_review_like_pkey"/>
+            </column>
+            <column name="review_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-11">
+        <createTable tableName="books">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="books_pkey"/>
+            </column>
+            <column name="description" type="TEXT"/>
+            <column defaultValueNumeric="0.0" name="discount" type="FLOAT8"/>
+            <column name="image" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_bestseller" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pub_date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="slug" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-12">
+        <createTable tableName="document">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="document_pkey"/>
+            </column>
+            <column name="slug" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="sort_index" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-13">
+        <createTable tableName="faq">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="faq_pkey"/>
+            </column>
+            <column name="answer" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="question" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="sort_index" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-14">
+        <createTable tableName="file_download">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="file_download_pkey"/>
+            </column>
+            <column name="book_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="1" name="count" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-15">
+        <createTable tableName="genre">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="genre_pkey"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="parent_id" type="INTEGER"/>
+            <column name="slug" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-16">
+        <createTable tableName="message">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="message_pkey"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="subject" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-17">
+        <createTable tableName="user_contact">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="user_contact_pkey"/>
+            </column>
+            <column name="approved" type="SMALLINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="code_trails" type="INTEGER"/>
+            <column name="contact" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="INTEGER"/>
+            <column name="user_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-18">
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="users_pkey"/>
+            </column>
+            <column name="balance" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hash" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reg_time" type="TIMESTAMP WITHOUT TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-19">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-20">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-21">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-22">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-23">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq12" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-24">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-25">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-26">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-27">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-28">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-29">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-30">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-31">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="authors_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-32">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-33">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-34">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-35">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-36">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-37">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-38">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-39">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-40">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-41">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-42">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-43">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="balance_transaction_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-44">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-45">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-46">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-47">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-48">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-49">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-50">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-51">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-52">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-53">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-54">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2author_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-55">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-56">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-57">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-58">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-59">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-60">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-61">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-62">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-63">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-64">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-65">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-66">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2genre_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-67">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-68">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-69">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-70">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-71">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-72">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-73">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-74">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-75">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-76">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-77">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-78">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-79">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-80">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-81">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-82">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-83">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-84">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-85">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-86">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-87">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-88">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-89">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-90">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book2user_type_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-91">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-92">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-93">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-94">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-95">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-96">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-97">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-98">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-99">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-100">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-101">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-102">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-103">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-104">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-105">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-106">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-107">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-108">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-109">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-110">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-111">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-112">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-113">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-114">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_file_type_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-115">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-116">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-117">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-118">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-119">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-120">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-121">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-122">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-123">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-124">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-125">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-126">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-127">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-128">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-129">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-130">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-131">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-132">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-133">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-134">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-135">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-136">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-137">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-138">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="book_review_like_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-139">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-140">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-141">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-142">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-143">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq12" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-144">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-145">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-146">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-147">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-148">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-149">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-150">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-151">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="books_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-152">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-153">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-154">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-155">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-156">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-157">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-158">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-159">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-160">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-161">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-162">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-163">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="document_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-164">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-165">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-166">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-167">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-168">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-169">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-170">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-171">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-172">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-173">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-174">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-175">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="faq_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-176">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-177">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-178">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-179">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-180">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-181">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-182">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-183">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-184">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-185">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-186">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-187">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="file_download_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-188">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-189">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-190">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-191">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-192">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-193">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-194">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-195">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-196">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-197">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-198">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-199">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="genre_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-200">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-201">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-202">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-203">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-204">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-205">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-206">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-207">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-208">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-209">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-210">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-211">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="message_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-212">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="test_entities_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-213">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-214">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-215">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-216">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-217">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-218">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-219">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-220">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-221">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-222">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-223">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-224">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="user_contact_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-225">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-226">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq1" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-227">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq10" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-228">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq11" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-229">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq2" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-230">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq3" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-231">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq4" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-232">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq5" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-233">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq6" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-234">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq7" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-235">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq8" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-236">
+        <createSequence cacheSize="1" cycle="false" incrementBy="1" maxValue="9223372036854775807"
+                        minValue="1" sequenceName="users_id_seq9" startValue="1"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-237">
+        <addForeignKeyConstraint baseColumnNames="author_id" baseTableName="book2author"
+                                 constraintName="fk3hyom3yo5q6nfo9ytqofqil37" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="authors"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-238">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book2author"
+                                 constraintName="fk8joa8tens71ol1st4fd9hssph" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="books"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1685288869056-239">
+        <addForeignKeyConstraint baseColumnNames="type_id" baseTableName="book_file"
+                                 constraintName="fkab7ynoex2ahy28trbmkk9uxu4" deferrable="false"
+                                 initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION"
+                                 referencedColumnNames="id" referencedTableName="book_file_type"/>
+    </changeSet>
+</databaseChangeLog>
