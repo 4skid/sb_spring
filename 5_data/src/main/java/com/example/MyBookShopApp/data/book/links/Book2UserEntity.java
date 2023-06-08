@@ -1,10 +1,17 @@
 package com.example.MyBookShopApp.data.book.links;
 
+import com.example.MyBookShopApp.data.book.Book;
+import com.example.MyBookShopApp.data.user.UserEntity;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "book2user")
+@Getter
+@Setter
 public class Book2UserEntity {
 
     @Id
@@ -14,52 +21,16 @@ public class Book2UserEntity {
     @Column(columnDefinition = "TIMESTAMP NOT NULL")
     private LocalDateTime time;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private int typeId;
+    @ManyToOne
+    @JoinColumn(name = "type_id", referencedColumnName = "id")
+    private Book2UserTypeEntity typeId;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private int bookId;
+    @ManyToOne
+    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    private Book bookId;
 
-    @Column(columnDefinition = "INT NOT NULL")
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private UserEntity userId;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public LocalDateTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalDateTime time) {
-        this.time = time;
-    }
-
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }

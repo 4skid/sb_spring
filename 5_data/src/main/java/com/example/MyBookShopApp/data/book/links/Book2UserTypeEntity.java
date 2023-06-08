@@ -1,9 +1,15 @@
 package com.example.MyBookShopApp.data.book.links;
 
+import com.example.MyBookShopApp.data.enums.UserTypeName;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "book2user_type")
+@Getter
+@Setter
 public class Book2UserTypeEntity {
 
     @Id
@@ -14,29 +20,6 @@ public class Book2UserTypeEntity {
     private String code;
 
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
-    private String name;
+    private UserTypeName name;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

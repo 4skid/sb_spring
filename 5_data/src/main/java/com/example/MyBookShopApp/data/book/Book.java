@@ -1,6 +1,6 @@
 package com.example.MyBookShopApp.data.book;
 
-import liquibase.pro.packaged.S;
+import com.example.MyBookShopApp.data.book.review.BookReviewEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -47,6 +47,12 @@ public class Book {
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")})
     public List<Author> authors = new ArrayList<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "book_review",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    public List<BookReviewEntity> bookReviews = new ArrayList<>();
 
     public String getAuthorName() {
         String name = "";
