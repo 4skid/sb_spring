@@ -1,10 +1,23 @@
 package com.example.MyBookShopApp.data.user;
 
+import com.example.MyBookShopApp.data.book.file.FileDownloadEntity;
+import com.example.MyBookShopApp.data.book.links.Book2UserEntity;
+import com.example.MyBookShopApp.data.book.review.BookReviewEntity;
+import com.example.MyBookShopApp.data.book.review.BookReviewLikeEntity;
+import com.example.MyBookShopApp.data.book.review.MessageEntity;
+import com.example.MyBookShopApp.data.payments.BalanceTransactionEntity;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
 public class UserEntity {
 
     @Id
@@ -23,43 +36,24 @@ public class UserEntity {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String name;
 
-    public int getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "userId")
+    private List<Book2UserEntity> book2User = new ArrayList<>();
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "userId")
+    private List<FileDownloadEntity> fileDownload = new ArrayList<>();
 
-    public String getHash() {
-        return hash;
-    }
+    @OneToMany(mappedBy = "userId")
+    private List<BalanceTransactionEntity> balanceTransaction = new ArrayList<>();
 
-    public void setHash(String hash) {
-        this.hash = hash;
-    }
+    @OneToMany(mappedBy = "userId")
+    private List<BookReviewEntity> bookReview = new ArrayList<>();
 
-    public LocalDateTime getRegTime() {
-        return regTime;
-    }
+    @OneToMany(mappedBy = "userId")
+    private List<BookReviewLikeEntity> bookReviewLike = new ArrayList<>();
 
-    public void setRegTime(LocalDateTime regTime) {
-        this.regTime = regTime;
-    }
+    @OneToMany(mappedBy = "userId")
+    private List<MessageEntity> messageList = new ArrayList<>();
 
-    public int getBalance() {
-        return balance;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @OneToOne(mappedBy = "userId")
+    private UserContactEntity userContactEntity;
 }

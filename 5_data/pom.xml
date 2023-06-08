@@ -73,6 +73,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.21.1</version>
                 <configuration>
+                    <changeSetAuthor>user</changeSetAuthor>
                     <url>jdbc:postgresql://localhost:5432/postgres</url>
                     <username>postgres</username>
                     <password>123</password>
